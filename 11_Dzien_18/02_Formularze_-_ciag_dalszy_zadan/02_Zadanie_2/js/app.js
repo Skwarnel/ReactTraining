@@ -1,7 +1,8 @@
-import React, {Component} from "react";
-import ReactDOM from "react-dom";
+import React from "react";
+import {createRoot} from "react-dom/client";
+import AdultStuff from "./AdultStuff";
 
-ReactDOM.render(
-  <h1>Hello, World!</h1>,
-  document.getElementById("app")
-);
+const App = () => <AdultStuff />;
+
+const root = createRoot(document.getElementById("app"));
+root.render(<App/>);
