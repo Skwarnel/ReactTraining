@@ -1,7 +1,11 @@
-import React, {Component} from "react";
-import ReactDOM from "react-dom";
+import React from "react";
+import {createRoot} from "react-dom/client";
+import DynamicLego from "./DynamicLego";
 
-ReactDOM.render(
-  <h1>Hello, World!</h1>,
-  document.getElementById("app")
-);
+const App = () => {
+    return <DynamicLego />;
+}
+
+const root = createRoot(document.getElementById("app"));
+
+root.render(<App/>);
