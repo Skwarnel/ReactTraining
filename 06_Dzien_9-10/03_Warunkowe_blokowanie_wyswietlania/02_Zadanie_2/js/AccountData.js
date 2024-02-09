@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import FakeAPI from "./data/fakeAPI.js";
 
 const AccountData = () => {
-    const [data, setData] = useState(false);
+    const [data, setData] = useState([]);
     FakeAPI.then(data => {
-        setData( (prevState) => {
-            return {...prevState, data}
+        setData( prev => {
+            return data;
         })
     });
 
+    console.log(data);
 
     return (
         <div>
@@ -22,8 +23,12 @@ const AccountData = () => {
                 </thead>
                 <tbody>
                 {
-                    data && data.map( () => {
-
+                    data.map( (elem, index) => {
+                        return <tr key={index}>
+                            <td>{elem.day}</td>
+                            <td>{elem.balance}</td>
+                            <td>{elem.change}</td>
+                        </tr>
                     })
                 }
                 </tbody>
