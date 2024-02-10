@@ -9,11 +9,11 @@ const AccountData = () => {
         })
     });
 
-    console.log(data);
 
     return (
         <div>
-            <table>
+            {data.length != 0 ?
+            (<table>
                 <thead>
                 <tr>
                     <th>day</th>
@@ -22,8 +22,7 @@ const AccountData = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {
-                    data.map( (elem, index) => {
+                {  data.map( (elem, index) => {
                         return <tr key={index}>
                             <td>{elem.day}</td>
                             <td>{elem.balance}</td>
@@ -32,7 +31,7 @@ const AccountData = () => {
                     })
                 }
                 </tbody>
-            </table>
+            </table>) : <h1>'Oczekuję na dane'</h1>}
         </div>
     );
 };
