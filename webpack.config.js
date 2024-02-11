@@ -1,7 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 
-const entryPath = "07_Dzien_11/01_Metody_cyklu_zycia_komponentu/04_Zadanie_4";
+const entryPath = "09_Dzien_15/02_Przekazywanie_zdarzen/02_Zadanie_2";
 
 module.exports = {
   mode: "none",

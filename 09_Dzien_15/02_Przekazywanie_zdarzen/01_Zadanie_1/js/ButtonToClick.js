@@ -1,13 +1,13 @@
 import React from 'react';
 
-function ButtonToClick({increment}) {
+function ButtonToClick({increment, msg}) {
     const handleClick = () => {
         if (typeof increment === 'function') {
             increment()
         }
     }
     return (
-        <button onClick={handleClick}>Increment</button>
+        <button onClick={handleClick}>{msg}</button>
     );
 }
 

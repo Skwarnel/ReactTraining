@@ -3,8 +3,8 @@ import ShopItem from "./ShopItem";
 
 const Shop = () => {
     const [list, setList] = useState([]);
-    const buy = () => {
-        console.log("Kupione");
+    const buy = (title) => {
+        setList(prevState => [...prevState, title]);
     }
     return (
         <>
