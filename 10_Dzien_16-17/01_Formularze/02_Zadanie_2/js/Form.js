@@ -1,53 +1,52 @@
 import React, {useState} from 'react';
+import FakeAPI from "./data/fakeAPI";
 
 const Form = () => {
-    const [form, setForm] = useState({ name: "", age: 25 });
+    const [form, setForm] = useState({user: "c", pass: "q"});
+    const [data, setData] = useState("");
 
-    const handleChange = (e) => {
+    const changeHandler = (e) => {
         const {name, value} = e.target;
-        setForm(prevState => {
+        setForm(prev => {
             return {
-                ...prevState,
+                ...prev,
                 [name]: value
             }
         });
     };
 
+    const submitHandler = (event) => {
+        event.preventDefault();
+        FakeAPI.login({
+            username: form.user,
+            password: form.pass
+        }).then( o => {
+            console.log(o);
+            setData(`${o.name} ${o.surname} ${o.lastLogin}`);
+        }).catch(err => {
+            console.log("err", err);
+            setData(err);
+        })
+    }
+
     return (
-        <form>
-            <input type="text" name="name" value={form.name} onChange={handleChange}/>
-            <input type="number" name="age" value={form.age} onChange={handleChange}/>
-        </form>
+        <>
+            <form onSubmit={submitHandler}>
+                <div>
+                    Login:
+                    <input type="text" name="user" value={form.user} onChange={changeHandler}/>
+                </div>
+                <div>
+                    Password:
+                    <input type="text" name="pass" value={form.pass} onChange={changeHandler}/>
+                </div>
+                <button>Wyślij</button>
+            </form>
+            <div>
+                Result: {data}
+            </div>
+        </>
     );
 };
-
-// const Form = () => {
-//     const [form, setForm] = useState({user: "userName", pass: "password"});
-//     const changeHandler = (e) => {
-//         const {user, pass} = e.target;
-//         setForm(prev => {
-//             return {
-//                 ...prev,
-//                 [name]: user
-//             }
-//         })
-//     }
-//
-//     return (
-//         <>
-//             <form>
-//                 <div>
-//                     UserName:
-//                     <input type="text" name="user" value={form.user} onChange={changeHandler}/>
-//                 </div>
-//                 <div>
-//                     Password:
-//                     <input type="text" name="pass" value={form.pass} onChange={changeHandler}/>
-//                 </div>
-//                 <button>Wyslij</button>
-//             </form>
-//         </>
-//     );
-// };
 
 export default Form;
